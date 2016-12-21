@@ -1,6 +1,6 @@
 import arcade
-from platform import BluePlatform
-from platform import RedPlatform
+from objectCreate import Creator
+from platform import BluePlatform, RedPlatform
 
  
 SCREEN_WIDTH = 1000
@@ -12,14 +12,12 @@ class SrslyPongGame(arcade.Window):
 
             arcade.set_background_color(arcade.color.BLACK)
 
-            self.bluePlatform = BluePlatform(25, 300)
-            self.redPlatform = RedPlatform(975, 300)
-
             self.bluePlatform_sprite = arcade.Sprite('images\BluePlatform.png')
             self.redPlatform_sprite = arcade.Sprite('images\RedPlatform.png')
             
-
-
+            self.creator = Creator(width, height) 
+            #self.bluePlatform = BluePlatform(25, 300)
+            #self.redPlatform = RedPlatform(975, 300)
 
       def on_draw(self):
             arcade.start_render()
@@ -27,13 +25,13 @@ class SrslyPongGame(arcade.Window):
             self.redPlatform_sprite.draw()
             
       def animate(self,delta):
-            bluePlatform = self.bluePlatform
-            redPlatform = self.redPlatform
-
-            bluePlatform.animate(delta)
-            redPlatform.animate(delta)
-            self.bluePlatform_sprite.set_position(bluePlatform.x, bluePlatform.y)
-            self.redPlatform_sprite.set_position(redPlatform.x, redPlatform.y)
+            #bluePlatform = self.bluePlatform
+            #redPlatform = self.redPlatform
+            #bluePlatform.animate(delta)
+            #redPlatform.animate(delta)
+            self.creator.animate(delta)
+            self.bluePlatform_sprite.set_position(self.creator.bluePlatform.x, self.creator.bluePlatform.y)
+            self.redPlatform_sprite.set_position(self.creator.redPlatform.x, self.creator.redPlatform.y)
 
                   
 if __name__ == '__main__':
