@@ -1,7 +1,7 @@
 import arcade
 from objectCreate import Creator
 from platform import BluePlatform, RedPlatform
-
+from ball import Ball
  
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
@@ -30,9 +30,14 @@ class SrslyPongGameWindow(arcade.Window):
 
             self.blue_platform_sprite = ModelSprite('images\BluePlatform.png',model=self.creator.blue_platform)
             self.red_platform_sprite = ModelSprite('images\RedPlatform.png',model=self.creator.red_platform)
+            self.ball_sprite = ModelSprite('images\Ball.png',model=self.creator.ball)
+
             
       def on_draw(self):
             arcade.start_render()
+            arcade.draw_text(str(self.creator.ScoreCount(1)), 350, 300,arcade.color.WHITE, 100)
+            arcade.draw_text(str(self.creator.ScoreCount(2)), 650, 300,arcade.color.WHITE, 100)
+            self.ball_sprite.draw()
             self.blue_platform_sprite.draw()
             self.red_platform_sprite.draw()
             
