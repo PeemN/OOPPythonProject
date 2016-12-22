@@ -1,7 +1,7 @@
 DIR_UP = 1
 DIR_STOP = 0
 DIR_DOWN = -1
-PLATFORM_VELOCITY = 5
+PLATFORM_VELOCITY = 6
 
 class Platform:
     DIR = 0
@@ -24,6 +24,15 @@ class Platform:
             self.y = 500
         if self.y < 100:
             self.y = 100
+
+    def hit(self, other):
+        self.hit_check = 0
+        if abs(other.x - self.x) <= 0:
+            if abs(other.y - self.y) <= 100:
+                self.hit_check = 1
+        return self.hit_check
+        #self.distance = pow(pow((self.x - other.x), 2) + pow((self.y - other.y), 2), 0.5)
+        #return (self.distance <= hit_size) 
 
 class BluePlatform(Platform):
 
@@ -52,3 +61,4 @@ class RedPlatform(Platform):
     def animate(self, delta):
         super().animate(delta)
         self.y += PLATFORM_VELOCITY*RedPlatform.DIR
+

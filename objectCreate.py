@@ -1,5 +1,5 @@
 import arcade.key
-from platform import Platform
+from platform import BluePlatform,RedPlatform
 from ball import Ball
 
 DIR_UP = 1
@@ -22,6 +22,7 @@ class Creator:
         self.blue_platform.animate(delta)
         self.red_platform.animate(delta)
         self.ball.animate(delta)
+        self.ball_reflextion()
 
     def on_key_press(self, key, key_modifiers):
         if key == arcade.key.W:
@@ -37,10 +38,16 @@ class Creator:
         if key == arcade.key.L:
             self.red_platform.controller(DIR_DOWN)
 
-    def ScoreCount(self, player_type):
+    def score_count(self, player_type):
         if player_type == 1:
             blue_score = self.ball.blue_score 
             return blue_score
         if player_type == 2:
             red_score = self.ball.red_score 
             return red_score
+
+    def ball_reflextion(self):
+        if self.blue_platform.hit(self.ball):
+            self.ball.inverse_direction_x()
+        if self.red_platform.hit(self.ball):
+            self.ball.inverse_direction_x()

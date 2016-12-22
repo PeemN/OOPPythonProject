@@ -35,8 +35,8 @@ class SrslyPongGameWindow(arcade.Window):
             
       def on_draw(self):
             arcade.start_render()
-            arcade.draw_text(str(self.creator.ScoreCount(1)), 350, 300,arcade.color.WHITE, 100)
-            arcade.draw_text(str(self.creator.ScoreCount(2)), 650, 300,arcade.color.WHITE, 100)
+            arcade.draw_text(str(self.creator.score_count(1)), 350, 300,arcade.color.WHITE, 100)
+            arcade.draw_text(str(self.creator.score_count(2)), 650, 300,arcade.color.WHITE, 100)
             self.ball_sprite.draw()
             self.blue_platform_sprite.draw()
             self.red_platform_sprite.draw()
