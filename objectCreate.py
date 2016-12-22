@@ -18,6 +18,8 @@ class Creator:
         self.hit_count = 0
         self.ball_type = 0
         self.reset = 0
+        self.save_score_p1 = 0
+        self.save_score_p2 = 0
         self.save_ball_pos_x = 0
         self.save_ball_pos_y = 0
         self.blue_platform = BluePlatform(25, 300)
@@ -29,17 +31,26 @@ class Creator:
         self.red_platform.animate(delta)
         self.ball.animate(delta)
         if self.hit_count % 5 == 1 and self.reset == 0:
+            self.save_score_p1 = self.ball.blue_score
+            self.save_score_p2 = self.ball.red_score            
             self.ball_type = randint(0,1)
             if self.ball_type == 0:
                 self.ball = BlueBall(515, 315)
             elif self.ball_type == 1:
                 self.ball = RedBall(515, 315)
+            self.ball.blue_score = self.save_score_p1
+            self.ball.red_score = self.save_score_p2
             self.reset = 1
         if self.hit_count % 5 == 0 and self.reset == 1:
             self.reset = 0
         if self.ball.to_normal:
+            self.save_score_p1 = self.ball.blue_score
+            self.save_score_p2 = self.ball.red_score
             self.ball = NormalBall(515, 315)
+            self.ball.blue_score = self.save_score_p1
+            self.ball.red_score = self.save_score_p2
         self.ball_reflextion()
+        self.game_end(self.ball.blue_score, self.ball.red_score)
 
     def on_key_press(self, key, key_modifiers):
         if key == arcade.key.W:
@@ -63,7 +74,7 @@ class Creator:
             red_score = self.ball.red_score 
             return red_score
 
-    def game_end(blue_score, red_score):
+    def game_end(self, blue_score, red_score):
         if blue_score == 5:
             self.end_state = 1
         elif red_score == 5:

@@ -10,9 +10,10 @@ class Ball:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.red_score = 0
-        self.blue_score = 0
         self.to_normal = 0
+        self.blue_score = 0
+        self.red_score = 0
+        self.score_checker = 0
         self.state = Ball.STATE
         Ball.SAVE_POINT_X = x
         Ball.SAVE_POINT_Y = y
@@ -104,9 +105,9 @@ class RedBall(Ball):
             self.Y = Ball.SAVE_POINT_Y
             Ball.STATE = 0
         if self.x > 1000:
+            self.red_score += 1
             Ball.to_normal = 0
             super().trans_back()
-            self.red_score += 1
             self.x = Ball.SAVE_POINT_X
             self.Y = Ball.SAVE_POINT_Y
             Ball.STATE = 0

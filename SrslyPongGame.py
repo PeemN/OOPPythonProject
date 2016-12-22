@@ -33,22 +33,25 @@ class SrslyPongGameWindow(arcade.Window):
             self.red_platform_sprite = ModelSprite('images\RedPlatform.png',model=self.creator.red_platform)
             
       def on_draw(self):
-            state = 0
-            #if state == 0:
             if self.creator.ball.ball_type == 0:
                   self.ball_sprite = ModelSprite('images\Ball.png',model=self.creator.ball)
             elif self.creator.ball.ball_type == 1:
                   self.ball_sprite = ModelSprite('images\BlueBall.png',model=self.creator.ball)
             elif self.creator.ball.ball_type == 2:
                   self.ball_sprite = ModelSprite('images\RedBall.png',model=self.creator.ball)
-            
-            arcade.start_render()
-            arcade.draw_text(str(self.creator.score_count(1)), 300, 280,arcade.color.GRAY, 100)
-            arcade.draw_text(str(self.creator.score_count(2)), 620, 280,arcade.color.GRAY, 100)
-            arcade.draw_text(str(self.creator.hit_count), 200, 450,arcade.color.GRAY, 50)
-            self.ball_sprite.draw()
-            self.blue_platform_sprite.draw()
-            self.red_platform_sprite.draw()
+            if self.creator.end_state == 0:
+                  arcade.start_render()
+                  arcade.draw_text(str(self.creator.score_count(1)), 300, 280,arcade.color.GRAY, 100)
+                  arcade.draw_text(str(self.creator.score_count(2)), 620, 280,arcade.color.GRAY, 100)
+                  #arcade.draw_text(str(self.creator.hit_count), 200, 450,arcade.color.GRAY, 50)
+                  self.ball_sprite.draw()
+                  self.blue_platform_sprite.draw()
+                  self.red_platform_sprite.draw()
+            else:
+                  if self.creator.score_count(1) > self.creator.score_count(2):
+                        arcade.draw_text(str("Player 1 Won"), 150, 250,arcade.color.WHITE, 100)
+                  elif self.creator.score_count(2) > self.creator.score_count(1):
+                        arcade.draw_text(str("Player 2 Won"), 150, 250,arcade.color.WHITE, 100)
             
       def animate(self,delta):
             self.creator.animate(delta)
