@@ -40,11 +40,11 @@ class BluePlatform(Platform):
         self.y += PLATFORM_VELOCITY*BluePlatform.DIR
 
     def hit(self, other):
-        self.hit_check_b = 0
+        self.hit_check = 0
         if other.x <= 50:
             if abs(other.y - self.y) <= 100:
-                self.hit_check_b = 1
-        return self.hit_check_b
+                self.hit_check = 1
+        return self.hit_check
 
 class RedPlatform(Platform):
 
@@ -54,16 +54,16 @@ class RedPlatform(Platform):
         super().__init__(x, y)
 
     def controller(self, direction):
-        RedPlatform.DIR = super().controller(direction) 
+        RedPlatform.DIR = super().controller(direction)
 
     def animate(self, delta):
         super().animate(delta)
         self.y += PLATFORM_VELOCITY*RedPlatform.DIR
 
     def hit(self, other):
-        self.hit_check_r = 0
+        self.hit_check = 0
         if other.x >= 950:
             if abs(other.y - self.y) <= 100:
-                self.hit_check_r = 1
-        return self.hit_check_r
+                self.hit_check = 1
+        return self.hit_check
 
