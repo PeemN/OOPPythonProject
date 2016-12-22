@@ -1,7 +1,7 @@
 import arcade.key
 from random import randint
 from platform import BluePlatform,RedPlatform
-from ball import NormalBall,BlueBall,RedBall
+from ball import Ball,NormalBall,BlueBall,RedBall
 
 DIR_UP = 1
 DIR_STOP = 0
@@ -28,15 +28,17 @@ class Creator:
         self.blue_platform.animate(delta)
         self.red_platform.animate(delta)
         self.ball.animate(delta)
-        if self.hit_count - 5 == 1 and self.reset == 0:
+        if self.hit_count % 5 == 1 and self.reset == 0:
             self.ball_type = randint(0,1)
             if self.ball_type == 0:
                 self.ball = BlueBall(515, 315)
             elif self.ball_type == 1:
                 self.ball = RedBall(515, 315)
             self.reset = 1
-        if self.hit_count - 5 == 0 and self == 1:
+        if self.hit_count % 5 == 0 and self.reset == 1:
             self.reset = 0
+        if self.ball.to_normal:
+            self.ball = NormalBall(515, 315)
         self.ball_reflextion()
 
     def on_key_press(self, key, key_modifiers):

@@ -75,16 +75,16 @@ class BlueBall(Ball):
         super().animate(delta)
         if self.x < 0:
             self.blue_score += 1
-            self.x = Ball.SAVE_POINT_X
-            self.Y = Ball.SAVE_POINT_Y
             Ball.to_normal = 0
             super().trans_back()
+            self.x = Ball.SAVE_POINT_X
+            self.Y = Ball.SAVE_POINT_Y
             Ball.STATE = 0
         if self.x > 1000:
-            self.x = Ball.SAVE_POINT_X
-            self.Y = Ball.SAVE_POINT_Y
             Ball.to_normal = 0
             super().trans_back()
+            self.x = Ball.SAVE_POINT_X
+            self.Y = Ball.SAVE_POINT_Y
             Ball.STATE = 0
 
     def inverse_direction_x(self, player):
@@ -98,17 +98,17 @@ class RedBall(Ball):
     def animate(self, delta):
         super().animate(delta)
         if self.x < 0:
-            self.x = Ball.SAVE_POINT_X
-            self.Y = Ball.SAVE_POINT_Y
             Ball.to_normal = 0
             super().trans_back()
+            self.x = Ball.SAVE_POINT_X
+            self.Y = Ball.SAVE_POINT_Y
             Ball.STATE = 0
         if self.x > 1000:
+            Ball.to_normal = 0
+            super().trans_back()
             self.red_score += 1
             self.x = Ball.SAVE_POINT_X
             self.Y = Ball.SAVE_POINT_Y
-            Ball.to_normal = 0
-            super().trans_back()
             Ball.STATE = 0
 
     def inverse_direction_x(self, player):
