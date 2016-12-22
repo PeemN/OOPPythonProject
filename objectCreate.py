@@ -22,7 +22,8 @@ class Creator:
         self.blue_platform.animate(delta)
         self.red_platform.animate(delta)
         self.ball.animate(delta)
-        self.ball_reflextion()
+        self.ball_reflextion_blue()
+        self.ball_reflextion_red()
 
     def on_key_press(self, key, key_modifiers):
         if key == arcade.key.W:
@@ -46,8 +47,10 @@ class Creator:
             red_score = self.ball.red_score 
             return red_score
 
-    def ball_reflextion(self):
+    def ball_reflextion_blue(self):
         if self.blue_platform.hit(self.ball):
-            self.ball.inverse_direction_x()
+            self.ball.inverse_direction_x(1)
+
+    def ball_reflextion_red(self):
         if self.red_platform.hit(self.ball):
-            self.ball.inverse_direction_x()
+            self.ball.inverse_direction_x(2)

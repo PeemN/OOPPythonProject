@@ -25,15 +25,6 @@ class Platform:
         if self.y < 100:
             self.y = 100
 
-    def hit(self, other):
-        self.hit_check = 0
-        if abs(other.x - self.x) <= 0:
-            if abs(other.y - self.y) <= 100:
-                self.hit_check = 1
-        return self.hit_check
-        #self.distance = pow(pow((self.x - other.x), 2) + pow((self.y - other.y), 2), 0.5)
-        #return (self.distance <= hit_size) 
-
 class BluePlatform(Platform):
 
     DIR = 0
@@ -48,6 +39,13 @@ class BluePlatform(Platform):
         super().animate(delta)
         self.y += PLATFORM_VELOCITY*BluePlatform.DIR
 
+    def hit(self, other):
+        self.hit_check_b = 0
+        if other.x <= 50:
+            if abs(other.y - self.y) <= 100:
+                self.hit_check_b = 1
+        return self.hit_check_b
+
 class RedPlatform(Platform):
 
     DIR = 0
@@ -61,4 +59,11 @@ class RedPlatform(Platform):
     def animate(self, delta):
         super().animate(delta)
         self.y += PLATFORM_VELOCITY*RedPlatform.DIR
+
+    def hit(self, other):
+        self.hit_check_r = 0
+        if other.x >= 950:
+            if abs(other.y - self.y) <= 100:
+                self.hit_check_r = 1
+        return self.hit_check_r
 

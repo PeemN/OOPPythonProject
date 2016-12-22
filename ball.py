@@ -19,7 +19,7 @@ class Ball:
         
     def animate(self, delta):
         if Ball.STATE == 0:
-            Ball.direction_x = 1#randint(0,1)
+            Ball.direction_x = randint(0,1)
             Ball.direction_y = randint(0,1)
             Ball.STATE = 1
         if self.y > 600:
@@ -45,9 +45,9 @@ class Ball:
         elif Ball.direction_y == 0:
             self.y -= 5
         
-    def inverse_direction_x(self):
-        if Ball.direction_x == 1:
-            Ball.direction_x = 0
-        if Ball.direction_x == 0:
+    def inverse_direction_x(self, player):
+        if player == 1:
             Ball.direction_x = 1
+        elif player == 2:
+            Ball.direction_x = 0
             
