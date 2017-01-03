@@ -29,16 +29,16 @@ class SrslyPongGameWindow(arcade.Window):
 
             self.creator = Creator(width, height)            
 
-            self.blue_platform_sprite = ModelSprite('images\BluePlatform.png',model=self.creator.blue_platform)
-            self.red_platform_sprite = ModelSprite('images\RedPlatform.png',model=self.creator.red_platform)
+            self.blue_platform_sprite = ModelSprite('images\blueplatform.png',model=self.creator.blue_platform)
+            self.red_platform_sprite = ModelSprite('images\redplatform.png',model=self.creator.red_platform)
             
       def on_draw(self):
             if self.creator.ball.ball_type == 0:
-                  self.ball_sprite = ModelSprite('images\Ball.png',model=self.creator.ball)
+                  self.ball_sprite = ModelSprite('images\ball.png',model=self.creator.ball)
             elif self.creator.ball.ball_type == 1:
-                  self.ball_sprite = ModelSprite('images\BlueBall.png',model=self.creator.ball)
+                  self.ball_sprite = ModelSprite('images\blueball.png',model=self.creator.ball)
             elif self.creator.ball.ball_type == 2:
-                  self.ball_sprite = ModelSprite('images\RedBall.png',model=self.creator.ball)
+                  self.ball_sprite = ModelSprite('images\redball.png',model=self.creator.ball)
             if self.creator.end_state == 0:
                   arcade.start_render()
                   arcade.draw_text(str(self.creator.score_count(1)), 300, 280,arcade.color.GRAY, 100)
